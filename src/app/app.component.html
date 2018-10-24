@@ -1,21 +1,59 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="main-div">
+<div  class="heading-class">
+<h1 [style.color]="'black'">Welcome</h1>
+<p>to my library..</p>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="hidden-class">
+<label>Want to see hidden message?</label>
+Yes:<input  name="isHidden" type="checkbox" [(ngModel)]="isHidden" />
+<div [hidden]="!isHidden">
+    This is secrete message......
+</div>
+</div>
 
+<div class="form-class">
+  <label class="label-class">Enter your name:</label><br>
+<input class="input-class" name="Name" type="text" [(ngModel)]="libraryRecord.name" /><br>
+<label class="label-class">Select Book:</label><br>
+  <select class="input-class" name="gender"  [(ngModel)]="libraryRecord.bookName" >
+    <option *ngFor="let book of books" value={{book}}>{{book}}</option>  
+  </select><br>
+  <label class="label-class">Select return date:</label><br>
+  <input class="input-class" name="Date" type="date" [(ngModel)]="libraryRecord.returnDate" /><br><br>
+  <button class="button-class" (click)="addDetails()">Issue Book</button>
+</div>
+<div class="live-feed">
+  <h2>Live feed</h2>
+    <label class="label-class1">Name: {{libraryRecord.name}}</label><br>
+    <label class="label-class1">Book Name: {{libraryRecord.bookName}}</label><br>
+    <label class="label-class1">Date: {{libraryRecord.returnDate}}</label>
+
+</div>
+<div class="info">
+    <h2>All Information</h2>
+<div *ngIf="records.length > 0">
+    <table >
+        <thead>
+          <td>Name</td>
+          <td>Book Name</td>
+          <td>Date of Return</td>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let record of records" >
+            <td>{{record.name}}</td>
+            <td>{{record.bookName}}</td>
+            <td>{{record.returnDate}}</td>    
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
+<div *ngIf="records.length == 0">
+    <p>No records available..</p>
+      </div>
+</div>
+
+
+</div>
 <router-outlet></router-outlet>
