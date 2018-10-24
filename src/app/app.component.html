@@ -20,7 +20,7 @@ Yes:<input  name="isHidden" type="checkbox" [(ngModel)]="isHidden" />
     <option *ngFor="let book of books" value={{book}}>{{book}}</option>  
   </select><br>
   <label class="label-class">Enter Email:</label><br>
-  <input class="input-class"  name="officialEmail" [ngModel]="libraryRecord.email" required [pattern]="emailPattern" #offEmail="ngModel"> 
+  <input class="input-class"  name="officialEmail" [(ngModel)]="libraryRecord.email" required [pattern]="emailPattern" #offEmail="ngModel"> 
   <br>
   <div *ngIf="offEmail.errors"> 
     <div *ngIf="offEmail.errors.required"> 
@@ -42,7 +42,9 @@ Yes:<input  name="isHidden" type="checkbox" [(ngModel)]="isHidden" />
   <h2>Live feed</h2>
     <label class="label-class1">Name: {{libraryRecord.name}}</label><br>
     <label class="label-class1">Book Name: {{libraryRecord.bookName}}</label><br>
-    <label class="label-class1">Date: {{libraryRecord.returnDate}}</label>
+    <label class="label-class1">Date: {{libraryRecord.returnDate}}</label><br>
+    <label class="label-class1">Email: {{libraryRecord.email}}</label>
+
 
 </div>
 <div class="info">
@@ -52,12 +54,14 @@ Yes:<input  name="isHidden" type="checkbox" [(ngModel)]="isHidden" />
         <thead>
           <td>Name</td>
           <td>Book Name</td>
+          <td>Email</td>
           <td>Date of Return</td>
         </thead>
         <tbody>
           <tr  *ngFor="let record of records" >
             <td>{{record.name}}</td>
             <td>{{record.bookName}}</td>
+            <td>{{record.email}}</td>
             <td>{{record.returnDate}}</td>    
           </tr>
         </tbody>
