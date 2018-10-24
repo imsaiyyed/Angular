@@ -14,13 +14,28 @@ Yes:<input  name="isHidden" type="checkbox" [(ngModel)]="isHidden" />
 
 <div class="form-class">
   <label class="label-class">Enter your name:</label><br>
-<input class="input-class" name="Name" type="text" [(ngModel)]="libraryRecord.name" /><br>
+<input class="input-class" name="Name" type="text" [(ngModel)]="libraryRecord.name" required><br>
 <label class="label-class">Select Book:</label><br>
   <select class="input-class" name="gender"  [(ngModel)]="libraryRecord.bookName" >
     <option *ngFor="let book of books" value={{book}}>{{book}}</option>  
   </select><br>
+  <label class="label-class">Enter Email:</label><br>
+  <input class="input-class"  name="officialEmail" [ngModel]="libraryRecord.email" required [pattern]="emailPattern" #offEmail="ngModel"> 
+  <br>
+  <div *ngIf="offEmail.errors"> 
+    <div *ngIf="offEmail.errors.required"> 
+        <label class="label-class1">(Email required.)</label>
+    </div>			   
+    <div *ngIf="offEmail.errors.pattern"> 
+      <label class="label-class1">(Email is not valid.)</label>
+    </div>	
+  </div>   
   <label class="label-class">Select return date:</label><br>
   <input class="input-class" name="Date" type="date" [(ngModel)]="libraryRecord.returnDate" /><br><br>
+  <div [hidden]="isValidData">
+    Please enter all fields..
+  </div>
+
   <button class="button-class" (click)="addDetails()">Issue Book</button>
 </div>
 <div class="live-feed">
@@ -53,7 +68,6 @@ Yes:<input  name="isHidden" type="checkbox" [(ngModel)]="isHidden" />
     <p>No records available..</p>
       </div>
 </div>
-
 
 </div>
 <router-outlet></router-outlet>

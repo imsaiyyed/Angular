@@ -1,11 +1,12 @@
 export class LibraryRecord {
     name: string;
     bookName: string;
-    returnDate: Date;
+    returnDate: string;
+    email:string;
     constructor(name: string, bookName: string) {
       this.name = name;
       this.bookName = bookName;
-      this.returnDate = new Date("yyyy/mm/dd");
+      this.returnDate = "";
     }
   
   }
