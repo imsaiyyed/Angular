@@ -12,6 +12,7 @@ export class AppComponent {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,4}$"; 
   title = 'my-app';
   isHidden:boolean=false;
+  isValidEmail:boolean=false;
   isValidData:boolean=true;
   books:string[]=["Wings of fire","Time history","End of the day","Harry Potter","Gravity","Intersteller"];
   libraryRecord:LibraryRecord=new LibraryRecord("","");
@@ -28,9 +29,14 @@ export class AppComponent {
   }
   else
   {
-    this.isValidData=true;
-    this.records.push(this.libraryRecord);
-    this.libraryRecord=new LibraryRecord("","");
+    if(new RegExp(this.emailPattern).test(this.libraryRecord.email))
+    {
+      this.isValidData=true;
+      this.records.push(this.libraryRecord);
+      this.libraryRecord=new LibraryRecord("","");
+      console.log("Match");
+    }
+
   }
   }
 }
